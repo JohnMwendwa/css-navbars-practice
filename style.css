@@ -7,9 +7,8 @@
 body {
   min-height: 100vh;
   max-width: 896px;
-  /* width: 100vw; */
   margin: 0 auto;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 .hamburger,
 .close {
