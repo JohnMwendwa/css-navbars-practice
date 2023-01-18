@@ -17,6 +17,9 @@ body {
 header {
   position: relative;
 }
+.hamburger {
+  margin-left: 1rem;
+}
 
 nav {
   display: flex;
@@ -61,7 +64,6 @@ nav a:hover {
 }
 main {
   padding: 0.5rem 1rem;
-  margin-top: 1rem;
 }
 main p {
   font-size: 1.25rem;
