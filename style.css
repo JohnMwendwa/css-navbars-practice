@@ -1,7 +1,9 @@
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: inherit;
 }
 
 body {
@@ -9,16 +11,73 @@ body {
   max-width: 896px;
   margin: 0 auto;
   overflow-x: hidden;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  opacity: 0; 
+  animation: fadeIn 1s forwards; 
 }
-.hamburger,
-.close {
-  font-size: 2rem;
+
+/* Loading Page */
+#loading {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #f3f3f3;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeOut 1s 2s forwards;
 }
+
+.spinner {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #3498db;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 0.5s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+
 header {
   position: relative;
 }
-.hamburger {
-  margin-left: 1rem;
+
+.hamburger,
+.close {
+  font-size: 2rem;
+  cursor: pointer;
+  margin: 1rem;
+  display: inline-block;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+.menu-toggle:checked ~ nav {
+  transform: translateY(0);
 }
 
 nav {
@@ -26,19 +85,17 @@ nav {
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
   transform: translateY(-100%);
   transition: transform 0.5s ease;
-  width: 100%;
-}
-
-nav:target {
-  transform: translateY(0);
+  background-color: #eaeaeb;
 }
 
 nav ul {
   list-style: none;
   width: 100%;
   text-align: center;
+  padding: 1rem 0;
 }
 
 nav a {
@@ -48,23 +105,24 @@ nav a {
   display: block;
   padding: 0.5rem 1rem;
   background-color: #eaeaeb;
+  transition: background-color 2s, color 2s;
 }
 
 nav a:hover {
   color: white;
   background-color: #00aeff;
 }
+
 .close {
-  display: inline;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }
 
-.close:hover {
-  background-color: #eaeaeb;
-  color: red;
-}
 main {
-  padding: 0.5rem 1rem;
+  padding: 1rem;
 }
+
 main p {
   font-size: 1.25rem;
   line-height: 1.5;
@@ -75,20 +133,17 @@ main p {
   .close {
     display: none;
   }
-  header {
-    margin-top: 0;
-    margin-bottom: 1rem;
-  }
 
   nav {
     position: static;
     transform: translateY(0);
-    background-color: #eaeaeb;
   }
+
   nav ul {
     display: flex;
     justify-content: space-evenly;
   }
+
   nav a {
     padding: 1rem;
   }
